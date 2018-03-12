@@ -1,4 +1,3 @@
-var Buffer = require('safe-buffer').Buffer
 var basex = require('../')
 var tape = require('tape')
 var fixtures = require('./fixtures.json')
@@ -21,7 +20,7 @@ fixtures.valid.forEach(function (f) {
 fixtures.valid.forEach(function (f) {
   tape.test('can decode ' + f.alphabet + ': ' + f.string, function (t) {
     var base = bases[f.alphabet]
-    var actual = base.decode(f.string).toString('hex')
+    var actual = Buffer.from(base.decode(f.string)).toString('hex')
 
     t.same(actual, f.hex)
     t.end()
@@ -41,9 +40,9 @@ fixtures.invalid.forEach(function (f) {
   })
 })
 
-tape.test('decode should return Buffer', function (t) {
-  t.true(Buffer.isBuffer(bases.base2.decode('')))
-  t.true(Buffer.isBuffer(bases.base2.decode('01')))
+tape.test('decode should return Uint8Array', function (t) {
+  t.true(bases.base2.decode('') instanceof Uint8Array)
+  t.true(bases.base2.decode('01') instanceof Uint8Array)
 
   t.end()
 })

@@ -6,9 +6,7 @@
 // Merged Buffer refactorings from base58-native by Stephen Pair
 // Copyright (c) 2013 BitPay Inc
 
-var Buffer = require('safe-buffer').Buffer
-
-module.exports = function base (ALPHABET) {
+function base (ALPHABET) {
   var ALPHABET_MAP = {}
   var BASE = ALPHABET.length
   var LEADER = ALPHABET.charAt(0)
@@ -50,7 +48,7 @@ module.exports = function base (ALPHABET) {
 
   function decodeUnsafe (string) {
     if (typeof string !== 'string') throw new TypeError('Expected String')
-    if (string.length === 0) return Buffer.allocUnsafe(0)
+    if (string.length === 0) return new Uint8Array(0)
 
     var bytes = [0]
     for (var i = 0; i < string.length; i++) {
@@ -74,7 +72,7 @@ module.exports = function base (ALPHABET) {
       bytes.push(0)
     }
 
-    return Buffer.from(bytes.reverse())
+    return Uint8Array.from(bytes.reverse())
   }
 
   function decode (string) {
@@ -85,8 +83,17 @@ module.exports = function base (ALPHABET) {
   }
 
   return {
-    encode: encode,
-    decodeUnsafe: decodeUnsafe,
-    decode: decode
+    'encode': encode,
+    'decodeUnsafe': decodeUnsafe,
+    'decode': decode
   }
+}
+// eslint-disable-next-line
+if (typeof define === 'function' && define['amd']) {
+  // eslint-disable-next-line
+  define(function () {return base})
+} else if (typeof exports === 'object') {
+  module.exports = base
+} else {
+  this['base_x'] = base
 }

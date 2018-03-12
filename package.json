@@ -1,5 +1,5 @@
 {
-  "name": "base-x",
+  "name": "@detox/base-x",
   "version": "3.0.4",
   "description": "Fast base encoding / decoding of any given alphabet",
   "keywords": [
@@ -14,19 +14,20 @@
     "encode",
     "encoding"
   ],
-  "homepage": "https://github.com/cryptocoinjs/base-x",
+  "homepage": "https://github.com/Detox/base-x",
   "bugs": {
-    "url": "https://github.com/cryptocoinjs/base-x/issues"
+    "url": "https://github.com/Detox/base-x/issues"
   },
   "license": "MIT",
   "author": "Daniel Cousens",
   "files": [
-    "index.js"
+    "index.js",
+    "index.min.js"
   ],
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cryptocoinjs/base-x.git"
+    "url": "https://github.com/Detox/base-x.git"
   },
   "scripts": {
     "standard": "standard",
@@ -34,10 +35,8 @@
     "unit": "tape test/*.js"
   },
   "devDependencies": {
+    "build-gc": "^0.1.1",
     "standard": "^10.0.3",
     "tape": "^4.5.1"
-  },
-  "dependencies": {
-    "safe-buffer": "^5.0.1"
   }
 }
