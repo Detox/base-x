@@ -1,1 +1,1 @@
-require('build-gc')('index.js', 'index.min.js', 'externs.js');
+require('build-gc').default('index.js', 'index.min.js', 'externs.js');
